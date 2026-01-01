@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+<a href="/" class="btn btn-outline-primary me-2">Back</a>
+<div class="container mt-5">
+  <h3>Your Cart</h3>
+
+  {% if cart_items %}
+    
+    {% for item in cart_items %}
+      <div class="card mb-3 p-3">
+        <div class="row align-items-center">
+
+          <div class="col-md-2">
+            <img src="{{ item.product.image.url }}"
+                 class="img-fluid rounded">
+          </div>
+
+          <div class="col-md-3">
+            <strong>{{ item.product.name }}</strong>
+          </div>
+
+          <div class="col-md-3 d-flex align-items-center">
+            <a href="{% url 'decrease_quantity' item.id %}"
+               class="btn btn-outline-secondary btn-sm">−</a>
+
+            <span class="mx-2">{{ item.quantity }}</span>
+
+            <a href="{% url 'increase_quantity' item.id %}"
+               class="btn btn-outline-secondary btn-sm">+</a>
+          </div>
+
+          <div class="col-md-2">
+            ₹ {{ item.total_price }}
+          </div>
+
+          <div class="col-md-2">
+            <a href="{% url 'dummy' item.id %}"
+                class="btn btn-success btn-sm">
+                Buy Now
+            </a>
+            <a href="{% url 'remove_from_cart' item.id %}"
+               class="btn btn-danger btn-sm">
+               Remove
+            </a>
+          </div>
+
+        </div>
+      </div>
+    {% endfor %}
+
+    <!-- <a href="{% url 'checkout' %}"
+       class="btn btn-success mt-3">
+       Proceed to Buy
+    </a> -->
+
+  {% else %}
+    <p>Your cart is empty.</p>
+  {% endif %}
+</div>
+
+{% endblock %}

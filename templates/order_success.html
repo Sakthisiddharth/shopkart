@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-5 text-center">
+  <div class="card shadow p-5">
+    <h2 class="text-success mb-3">🎉 Order Placed Successfully!</h2>
+
+    <p class="mb-4">
+      Thank you for shopping with us.  
+      Your order has been placed and is being processed.
+    </p>
+
+    <a href="{% url 'order_status' %}" class="btn btn-primary me-2">
+      View My Orders
+    </a>
+
+    <a href="{% url 'home' %}" class="btn btn-outline-secondary">
+      Continue Shopping
+    </a>
+  </div>
+</div>
+
+{% endblock %}

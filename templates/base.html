@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>www.LunaCart.com</title>
+
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">L u n a |  cart </a>
+        <form class="d-flex" action="{% url 'search' %}" method="GET">
+            <input class="form-control me-2"
+                    type="search"
+                    name="q"
+                    placeholder="Search products..."
+                    value="{{ query|default:'' }}">
+            <button class="btn btn-outline-success">
+            Search
+        </button>
+        </form>
+
+            <div class="ms-auto">
+            {% if user.is_authenticated %}
+                <span class="text-light me-3">Hello..  {{request.user}}</span>
+                <a href="/" class="btn btn-outline-light me-2">Home</a>
+                <a class="btn btn-outline-light me-2" href="{% url 'order_status' %}">My Orders</a>
+                <a href="/cart/" class="btn btn-outline-light me-2">Cart</a>
+                <a class="btn btn-outline-light me-2" href="{% url 'about' %}">About</a>
+                <a href="/logout/" class="btn btn-outline-light">Logout</a>
+            {% else %}
+                <a href="/login/" class="btn btn-outline-light me-2">Login</a>
+                <a href="/register/" class="btn btn-warning">Register</a>
+            {% endif %}
+            </div> 
+        </div>
+
+    </nav>
+
+
+    <div class="container mt-5">
+    {% for message in messages %}
+        <div class="alert alert-danger">{{ message }}</div>
+    {% endfor %}
+
+
+    {% block content %}{% endblock %}
+    </div>
+
+
+</body>
+</html>
