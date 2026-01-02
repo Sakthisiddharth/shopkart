@@ -6,8 +6,8 @@
 <div class="product-grid">
 {% for product in products %}
     <div class="product-card">
-        <img src="{{ product.image.url }}">
-        <h4>{{ product.name }}</h4>
+        <a href="{% url 'product_detail' product.id %}"><img src="{{ product.image.url }}"></a>
+        <h4><a class="text-dark text-decoration-none" href="{% url 'product_detail' product.id %}">{{ product.name }}</h4>
         <p class="price">₹ {{ product.price }}</p>
 
         <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">
