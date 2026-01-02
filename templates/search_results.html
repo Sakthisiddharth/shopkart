@@ -13,12 +13,12 @@
       {% for product in products %}
         <div class="col-md-3 mb-4">
           <div class="card h-100 shadow-sm">
-            <img src="{{ product.image.url }}"
+            <a href="{% url 'product_detail' product.id %}"><img src="{{ product.image.url }}"
                  class="card-img-top"
                  style="height:200px; object-fit:cover">
 
             <div class="card-body">
-              <h6>{{ product.name }}</h6>
+              <h6><a class="text-dark text-decoration-none" href="{% url 'product_detail' product.id %}">{{ product.name }}</h6>
               <p class="text-success">₹ {{ product.price }}</p>
 
               <a href="{% url 'product_buy_now' product.id %}"
